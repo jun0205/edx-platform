@@ -1,9 +1,14 @@
 import React from 'react';
 
-export function EntitlementSupportPage() {
+import { Provider } from 'react-redux';
+import store from './data/store';
+
+import MainContainer from './components/Main/MainContainer';
+
+export function EntitlementSupportPage(props) {
   return (
-    <div>
-      Base Entitlement Support Page
-    </div>
+    <Provider store={ store }>
+      <MainContainer { ...props }/>
+    </Provider>
   );
 }
