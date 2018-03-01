@@ -184,7 +184,6 @@ class AssetIndexTestStudioFrontendPagination(StudioCourseTest):
 
     def populate_course_fixture(self, course_fixture):
         """Populate the children of the test course fixture and upload 49 files."""
-        ConfigModelFixture('/config/assets', {'enabled_for_all_courses': True, 'enabled': True}, 'cms').install()
         files = []
 
         for file_name in os.listdir(UPLOAD_FILE_DIR):

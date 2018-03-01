@@ -626,25 +626,6 @@ class AssetIndexHelpTest(StudioCourseTest):
             href=expected_url,
         )
 
-    def test_asset_index_side_bar_help(self):
-        """
-        Scenario: Help link in sidebar links is working on 'Files & Uploads' page
-        Given that I am on the 'Files & Uploads' page.
-        And I want help about the process
-        And I click the 'Learn more about managing files' in the sidebar links
-        Then Help link should open.
-        And help url should be correct
-        """
-        expected_url = _get_expected_documentation_url('/course_assets/course_files.html')
-
-        # Assert that help link is correct.
-        assert_side_bar_help_link(
-            test=self,
-            page=self.course_asset_index_page,
-            href=expected_url,
-            help_text='Learn more about managing files'
-        )
-
 
 @attr(shard=10)
 class CoursePagesHelpTest(StudioCourseTest):
