@@ -3,10 +3,7 @@ Acceptance tests for Studio related to the asset index page.
 """
 import os
 
-from common.test.acceptance.fixtures.base import StudioApiLoginError
-from common.test.acceptance.fixtures.config import ConfigModelFixture
-from common.test.acceptance.pages.studio.asset_index import AssetIndexPage, AssetIndexPageStudioFrontend
-from common.test.acceptance.tests.helpers import skip_if_browser
+from common.test.acceptance.pages.studio.asset_index import AssetIndexPageStudioFrontend
 from common.test.acceptance.tests.studio.base_studio_test import StudioCourseTest
 from common.test.acceptance.pages.studio.asset_index import UPLOAD_FILE_DIR
 
