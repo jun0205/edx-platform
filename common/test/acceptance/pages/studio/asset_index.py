@@ -17,6 +17,7 @@ from common.test.acceptance.pages.studio.course_page import CoursePage
 UPLOAD_SUFFIX = '/data/uploads/studio-uploads/'
 UPLOAD_FILE_DIR = Path(__file__).abspath().dirname().dirname().dirname().dirname() + UPLOAD_SUFFIX  # pylint: disable=no-value-for-parameter
 
+
 class AssetIndexPageStudioFrontend(CoursePage):
     """The Files and Uploads page for a course in Studio"""
 
