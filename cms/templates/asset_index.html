@@ -49,6 +49,9 @@
                 },
                 "upload_settings": {
                     "max_file_size_in_mbs": ${max_file_size_in_mbs|n, dump_js_escaped_json}
+                },  
+                "search_settings": {   
+                    "enabled": ${waffle().is_enabled(ENABLE_ASSETS_SEARCH) | n, dump_js_escaped_json}
                 }
             }
         </%static:studiofrontend>
