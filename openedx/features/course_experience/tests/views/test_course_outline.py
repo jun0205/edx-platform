@@ -259,6 +259,7 @@ class TestCourseOutlinePageWithPrerequisites(SharedModuleStoreTestCase, Mileston
         response_content = pq(response.content)
 
         # check unlock icon is present
+        import pdb; pdb.set_trace()
         unlock_icon = response_content('.fa-unlock')
         self.assertTrue(unlock_icon, "unlock icon is not present, but should be")
 
