@@ -230,12 +230,15 @@ def get_course_enrollments(user, org_whitelist, org_blacklist):
 
 def get_filtered_course_entitlements(user, org_whitelist, org_blacklist):
     """
-    Given a user, return a filtered set of his or her course enrollments.
+    Given a user, return a filtered set of his or her course entitlements.
 
     Arguments:
+        user (User): the user in question.
+        org_whitelist (list[str]): If not None, ONLY entitlements of these orgs will be returned.
+        org_blacklist (list[str]): CourseEntitlements of these orgs will be excluded.
 
     Returns:
-        generator[CourseEntitlement]: a sequence of enrollments to be displayed
+        generator[CourseEntitlement]: a sequence of entitlements to be displayed
         on the user's dashboard.
     """
     course_entitlement_available_sessions = {}
@@ -249,7 +252,7 @@ def get_filtered_course_entitlements(user, org_whitelist, org_blacklist):
         course_entitlement.update_expired_at()
         available_runs = get_visible_sessions_for_entitlement(course_entitlement)
 
-        if not course_entitlement.enrollment_course_run or not available_runs:
+        if not (course_entitlement.enrollment_course_run or available_runs):
             # Unfulfilled entitlements need a mock session for metadata
             pseudo_session = get_pseudo_session_for_entitlement(course_entitlement)
             unfulfilled_entitlement_pseudo_sessions[str(course_entitlement.uuid)] = pseudo_session
