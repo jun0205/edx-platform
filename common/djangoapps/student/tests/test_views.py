@@ -590,12 +590,10 @@ class StudentDashboardTests(SharedModuleStoreTestCase, MilestonesTestCaseMixin, 
         )
         course_enrollment = CourseEnrollmentFactory(user=self.user)
         entitlement = CourseEntitlementFactory(user=self.user, enrollment_course_run=course_enrollment)
-        course_runs = [
-            {
-                'key': unicode(course_overview.id),
-                'uuid': entitlement.course_uuid
-             }
-        ]
+        course_runs = [{
+            'key': unicode(course_overview.id),
+            'uuid': entitlement.course_uuid
+        }]
         mock_get_course_runs.return_value = course_runs
 
         response = self.client.get(self.path)
