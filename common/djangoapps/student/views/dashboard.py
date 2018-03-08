@@ -252,7 +252,7 @@ def get_filtered_course_entitlements(user, org_whitelist, org_blacklist):
         course_entitlement.update_expired_at()
         available_runs = get_visible_sessions_for_entitlement(course_entitlement)
 
-        if not (course_entitlement.enrollment_course_run or available_runs):
+        if not course_entitlement.enrollment_course_run:
             # Unfulfilled entitlements need a mock session for metadata
             pseudo_session = get_pseudo_session_for_entitlement(course_entitlement)
             unfulfilled_entitlement_pseudo_sessions[str(course_entitlement.uuid)] = pseudo_session
