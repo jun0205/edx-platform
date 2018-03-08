@@ -1730,6 +1730,21 @@ class TestInstructorAPIEnrollment(SharedModuleStoreTestCase, LoginEnrollmentTest
         )
         self.assertEqual(course_enrollment.mode, CourseMode.DEFAULT_MODE_SLUG)
 
+    def test_role_and_reason_are_persisted(self):
+        """
+        test that role and reason fields are persisted in the database
+        """
+        paid_course = self.create_paid_course()
+        url = reverse('students_update_enrollment', kwargs={'course_id': text_type(paid_course.id)})
+        params = {'identifiers': self.notregistered_email, 'action': 'enroll', 'email_students': False,
+                  'auto_enroll': False, 'reason': 'testing', 'role': 'Learner'}
+        response = self.client.post(url, params)
+
+        manual_enrollment = ManualEnrollmentAudit.objects.first()
+        self.assertEqual(manual_enrollment.reason, 'testing')
+        self.assertEqual(manual_enrollment.role, 'Learner')
+        self.assertEqual(response.status_code, 200)
+
     def _change_student_enrollment(self, user, course, action):
         """
         Helper function that posts to 'students_update_enrollment' to change
