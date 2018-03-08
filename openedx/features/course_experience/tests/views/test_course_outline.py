@@ -126,7 +126,7 @@ class TestCourseOutlinePage(SharedModuleStoreTestCase):
                         self.assertIn(sequential.format, response_content)
                     self.assertTrue(sequential.children)
                     for vertical in sequential.children:
-                        self.assertNotIn(vertical.display_name, response_content)
+                        self.assertIn(vertical.display_name, response_content)
 
 
 class TestCourseOutlinePageWithPrerequisites(SharedModuleStoreTestCase, MilestonesTestCaseMixin):
