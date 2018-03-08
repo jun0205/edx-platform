@@ -7,13 +7,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('student', '0013_delete_historical_enrollment_records'),
+        ('student', '0014_manualenrollmentaudit_role'),
     ]
 
     operations = [
-        migrations.AddField(
+        migrations.AlterField(
             model_name='manualenrollmentaudit',
             name='role',
-            field=models.CharField(max_length=64, blank=True),
+            field=models.CharField(max_length=64, null=True, blank=True),
         ),
     ]
