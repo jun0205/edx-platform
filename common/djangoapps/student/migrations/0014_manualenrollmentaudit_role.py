@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='manualenrollmentaudit',
             name='role',
-            field=models.CharField(max_length=30, null=True, blank=True),
+            field=models.CharField(max_length=64, null=True, blank=True),
         ),
     ]

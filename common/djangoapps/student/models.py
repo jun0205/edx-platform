@@ -1933,7 +1933,7 @@ class ManualEnrollmentAudit(models.Model):
     time_stamp = models.DateTimeField(auto_now_add=True, null=True)
     state_transition = models.CharField(max_length=255, choices=TRANSITION_STATES)
     reason = models.TextField(null=True)
-    role = models.CharField(blank=True, null=True, max_length=30)
+    role = models.CharField(blank=True, null=True, max_length=64)
 
     @classmethod
     def create_manual_enrollment_audit(cls, user, email, state_transition, reason, enrollment=None, role=None):
