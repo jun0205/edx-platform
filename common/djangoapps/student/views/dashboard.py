@@ -260,14 +260,17 @@ def get_filtered_course_entitlements(user, org_whitelist, org_blacklist):
         elif pseudo_session:
             course_key_str = pseudo_session['key']
 
-        course_run_key = CourseKey.from_string(course_key_str)
-        if org_whitelist and course_run_key.org not in org_whitelist:
-            continue
-        elif org_blacklist and course_run_key.org in org_blacklist:
-            continue
+        if course_key_str:
+            # If there is no course_key_str at this point we will be unable to determine if it should be shown.
+            # Therefore it should be excluded by default.
+            course_run_key = CourseKey.from_string(course_key_str)
+            if org_whitelist and course_run_key.org not in org_whitelist:
+                continue
+            elif org_blacklist and course_run_key.org in org_blacklist:
+                continue
 
-        course_entitlement_available_sessions[str(course_entitlement.uuid)] = available_runs
-        filtered_entitlements.append(course_entitlement)
+            course_entitlement_available_sessions[str(course_entitlement.uuid)] = available_runs
+            filtered_entitlements.append(course_entitlement)
 
     return filtered_entitlements, course_entitlement_available_sessions, unfulfilled_entitlement_pseudo_sessions
 
