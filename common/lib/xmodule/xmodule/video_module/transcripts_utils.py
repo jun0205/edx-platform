@@ -2,7 +2,6 @@
 Utility functions for transcripts.
 ++++++++++++++++++++++++++++++++++
 """
-import functools
 from django.conf import settings
 import os
 import copy
@@ -930,7 +929,6 @@ def get_transcript_from_contentstore(video, language, output_format, transcripts
     Returns:
         tuple containing content, filename, mimetype
     """
-    # import pdb ; pdb.set_trace()
     if output_format not in (Transcript.SRT, Transcript.SJSON, Transcript.TXT):
         raise NotFoundError('Invalid transcript format `{output_format}`'.format(output_format=output_format))
 
@@ -974,21 +972,6 @@ def get_transcript_from_contentstore(video, language, output_format, transcripts
     return transcript_content, transcript_name, Transcript.mime_types[output_format]
 
 
-def catch_exceptions(func):
-    """
-    Decorator to catch exceptions and raise `NotFoundError` for specified exceptions.
-    """
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        try:
-            return func(*args, **kwargs)
-        except (TranscriptException, TranscriptsGenerationException, UnicodeDecodeError) as ex:
-            log.exception(text_type(ex))
-            raise NotFoundError
-    return wrapper
-
-
-@catch_exceptions
 def get_transcript(video, transcripts_info, lang=None, output_format=Transcript.SRT, youtube_id=None):
     """
     Get video transcript from edx-val or content store.
